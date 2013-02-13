@@ -1,28 +1,28 @@
 
 class Task {
 	private int duration, startTime;
-	private boolean isPhantom;
+	private boolean phantom;
 
-	public TaskType getIsPhantom(){
-		return isPhantom
+	public boolean isPhantom(){
+		return phantom;
 	}
 
-	public int getTaskTime(){
-		return taskTime
+	public int getDuration(){
+		return duration;
 	}
 
 	private Task(int startTime, int duration, boolean isPhantom){
 		this.startTime = startTime;
 		this.duration  = duration;
-		this.isPhantom = isPhantom;
+		this.phantom = isPhantom;
 	}
 
 	public Task makePhantomTask(int startTime){
-		return Task(startTime, 0, true);
+		return new Task(startTime, 0, true);
 	}
 
 	public Task makeRegularTask(int startTime, int duration){
-		return Task(startTime, duration, false);
+		return new Task(startTime, duration, false);
 	}
 
 }

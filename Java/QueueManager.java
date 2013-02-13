@@ -1,5 +1,5 @@
 
-import java.util.*
+import java.util.*;
 
 class QueueManager {
 	// Simulates a queue (maybe the line at a bank) and records data. The queue has a sequence
@@ -11,7 +11,7 @@ class QueueManager {
 	// reaches the head of the queue and is serviced. This data is collected via a 'phantom task'
 	// which is generated at each timestep. The 'phantom task' never is sent to a processor, but 
 	// when it arrives the time it waited since it was generated is recorded
-	
+
 	private LinkedList<Task> queue; // Linked list of the queue of tasks to be completed
 	private int nProcessors; // current number of active processors 
 	private int currentQueueLength; // length of the queue at current timestep
@@ -32,7 +32,7 @@ class QueueManager {
 
 	public QueueManager(int nProcessors, int simulationLength) { // constructor
 		currentTime = 0;
-		results
+		currentQueueLength = 0;
 
 	}
 
@@ -41,7 +41,7 @@ class QueueManager {
 		addRandomTasks();
 		updateActiveProcessors();
 		assignJobs();
-		return queueLength;
+		return currentQueueLength;
 	}
 
 	private void addRandomTasks(){ // randomly add tasks to the queue
@@ -49,7 +49,7 @@ class QueueManager {
 	}
 
 	private int randomTaskLength(){ // get a random length for a task
-
+		return 1;
 	}
 
 	private void updateActiveProcessors(){ // tick the time in each processor
@@ -62,10 +62,11 @@ class QueueManager {
 	}
 
 	public int addProcessor(){ // Add a processor, return new # of processors
-
+		return 1;
 	}
 
 	public int removeProcessor() { // remove a processor and return # of processors
+		return 1;
 
 	}
 }

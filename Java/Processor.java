@@ -10,13 +10,14 @@ class Processor {
 
 	public boolean takeTask(Task task){
 		// return true if task was taken, false otherwise
+		return false;
 	} 
 
 	public boolean isOccupied(){
-		return occupied
+		return occupied;
 	}
 
-	public boolean tickTime(){
+	public void tickTime(){
 		// if occupied - reduce time to completion by 1
 		// if time to completion goes to zero - report that the task is finished 
 		// && the processor is free

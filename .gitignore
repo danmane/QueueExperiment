@@ -1,1 +1,8 @@
 *.class
+*.DS_*
+
+*.prefs
+
+JavaQueueExperiment/.classpath
+
+JavaQueueExperiment/.project

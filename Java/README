@@ -1,7 +1,0 @@
-QueueExperiment is a program that simulates a queue (like the line at a bank) and records data generated from the simulation.
-
-A 'QueueManager' keeps track of a queue full of tasks (with variable lengths) handled on a FIFO basis and a number of processors (like bank tellers) who can each handle one task at a time.
-A random number of tasks with random duration are generated each second. The program records the number of tasks existing at each timestep t and how long a new task generated at the beginning of timestep t would wait in line before being serviced.
-
-The goal of this experiment is to understand when and why lines form, and how policies like increasing the number of tellers in response to longer wait periods can decrease waiting time. 
-I also hope to learn some Java in the process.

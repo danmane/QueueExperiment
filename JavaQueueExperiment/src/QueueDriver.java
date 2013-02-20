@@ -1,16 +1,33 @@
+import java.util.Random;
 
 public class QueueDriver {
-	
+	int nProc;
+	int maxTicks;
+	double taskProbability;
+	int meanLength;
+	int stdev;
+	QueueManager qm;
+	Random myRandomGen;
 
-	public static void main(String[] args){
-		QueueManager qm = new QueueManager(5);
-		int numTasks;
-		while (qm.tick() < 200){
-			//System.out.println(qm.getQueueLength());
-			numTasks = randomNumTasks();
-			for (int i=0; i<numTasks; i++){
+	public QueueDriver(int seed){
+		if (seed==0){
+			myRandomGen = new Random();
+		} else {
+			myRandomGen = new Random(seed);
+		}
+	}
+	
+	public QueueManager runQueue(int nProc, int maxTicks, double taskProbability, int meanLength, int stdev){
+		this.nProc = nProc;
+		this.maxTicks = maxTicks;
+		this.taskProbability = taskProbability;
+		this.meanLength = meanLength;
+		this.stdev = stdev;
+		qm = new QueueManager(nProc);
+		while (qm.tick() < maxTicks){
+			if (binomialBool(taskProbability)){
 				qm.addTask(randomTaskLength());
-			}	
+			}
 		}
 		
 		while (!qm.isFinished()){
@@ -20,8 +37,13 @@ public class QueueDriver {
 				System.out.println("------------");
 			}
 		}
-		//qm.tick();
 		reportQM(qm);
+		return qm;
+	}
+	
+	public static void main(String[] args){
+		QueueDriver qd = new QueueDriver(1);
+		qd.runQueue(3, 500, .03, 70, 15);
 	}
 	public static void reportQM(QueueManager qm){
 		System.out.println("Time: " + qm.getCurrentTime());
@@ -36,11 +58,15 @@ public class QueueDriver {
 	}
 	
 
-	public static int randomNumTasks(){
-		return (int) (Math.random() * 2);
+	private boolean binomialBool(double p){
+		return (myRandomGen.nextDouble() < p);
 	}
 	
-	public static int randomTaskLength(){
-		return (int) (Math.random() * 20);
+	private int randomTaskLength(){
+		double g;
+		g = myRandomGen.nextGaussian();
+		g *= stdev;
+		g += meanLength;
+		return (int) g;
 	}
 }
